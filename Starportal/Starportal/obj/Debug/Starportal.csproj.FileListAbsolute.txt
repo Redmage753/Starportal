@@ -1,0 +1,7 @@
+C:\Users\daemo\OneDrive\DSU\CSC 260\Project\Starportal\Starportal\obj\Debug\Starportal.csprojAssemblyReference.cache
+C:\Users\daemo\OneDrive\DSU\CSC 260\Project\Starportal\Starportal\obj\Debug\Starportal.csproj.CoreCompileInputs.cache
+C:\Users\daemo\OneDrive\DSU\CSC 260\Project\Starportal\Starportal\bin\Debug\Starportal.exe.config
+C:\Users\daemo\OneDrive\DSU\CSC 260\Project\Starportal\Starportal\bin\Debug\Starportal.exe
+C:\Users\daemo\OneDrive\DSU\CSC 260\Project\Starportal\Starportal\bin\Debug\Starportal.pdb
+C:\Users\daemo\OneDrive\DSU\CSC 260\Project\Starportal\Starportal\obj\Debug\Starportal.exe
+C:\Users\daemo\OneDrive\DSU\CSC 260\Project\Starportal\Starportal\obj\Debug\Starportal.pdb
