@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Starportal
+namespace CharacterBuilder
 {
     interface ICharacterStats
     {
-        string Name { get; set; }
-        double Attack { get; set; }
-        double Defend { get; set; }
-        double Health { get; set; }
-        double currentHealth { get; set; }
-
-        
+        int CharacterStrength { get; set; }
+        int CharacterWisdom { get; set; }
+        int CharacterDexterity { get; set; }
+        int CharacterIntelligence { get; set; }
+        int CharacterConstitution { get; set; }
+        int CharacterCharisma { get; set; }
 
     }
 }

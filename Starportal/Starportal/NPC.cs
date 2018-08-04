@@ -8,5 +8,6 @@ namespace Starportal
 {
     class NPC
     {
+
     }
 }
