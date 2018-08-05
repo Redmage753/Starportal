@@ -16,7 +16,7 @@ namespace CharacterBuilder
         public double Defend { get; set; } = 0.0;
         public double Health { get; set; } = 0.0;
         public double CurrentHealth { get; set; } = 0.0;
-        
+
         public NPC(string name, string gender, string race, string role, double attack, double defend, double health, double currentHealth)
         {
             this.Name = name;
@@ -29,7 +29,33 @@ namespace CharacterBuilder
             this.CurrentHealth = currentHealth;
         }
 
+        public NPC(double health)
+        {
+            this.CurrentHealth = health;
+        }
 
+        public static NPC operator +(NPC a, NPC b)
+        {
+            double EncounterHealth = a.CurrentHealth + b.CurrentHealth;
+            NPC Encounter = new NPC(EncounterHealth);
+
+            return Encounter;
+        }
+
+        /*
+        Random rndAttack = new Random();
+        Random rndBlock = new Random();
+
+        public double WeaponStrike()
+        {
+            return rndAttack.Next(1, Convert.ToInt32(Attack));
+        }
+
+        public double ShieldDefense()
+        {
+            return rndBlock.Next(1, Convert.ToInt32(Defend));
+        }
+        */
 
 
     }
