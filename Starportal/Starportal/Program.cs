@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CharacterBuilder;
+using ScenarioBuilder;
 
 namespace Starportal
 {
@@ -11,11 +12,11 @@ namespace Starportal
     {
         static void Main(string[] args)
         {
-
+            #region Variables
             var role = "No Role";
             var race = "No Race";
             var gender = "No gender";
-            var userInput = "No Race";
+            var userInput = "Null";
 
             var characterName = "NullName";
             var characterGender = "NullGender";
@@ -26,11 +27,12 @@ namespace Starportal
             var characterHealth = 0;
             var characterCurrentHealth = 0;
             var pointDistribution = 30;
+            #endregion
 
             Console.WriteLine("Welcome to the Infinity Continuum Inn & Tavern! \n\nAdventurers come to us from around the world to explore the dangerous worlds found beyond the infamous Star Portal!\n\n" +
                               "Right now, we’ve managed a modicum of control – we can send you to any of the primordial elemental planes. The problem is, we don’t know which one you will get before – you’ll find out only once you’ve passed through. We believe if you can recover an elemental core from each location, our resident warlock Vanarak will be able to develop a more precise control unit. He may even be able to amplify the power to reach other locations!\n\n" +
                               "If this task is too dangerous, there is still a wealth of treasures to be found in the realms. Feel free to pursue as shallow or deep as you want into each world. Just remember where your exit door is, or you won’t be able to return!\n\n" +
-                              "Now, let’s find out who our explorers are today!");
+                              "Now, let’s find out who our explorers are today!\n");
 
 
             #region Class selection
@@ -124,6 +126,7 @@ namespace Starportal
                 }
             }
             #endregion
+
             Console.WriteLine($"You have chosen the path of the {characterRace} {characterRole}!\n");
             #region Name & Stats
 
@@ -185,6 +188,7 @@ namespace Starportal
             Console.WriteLine($"{characterName} has a strength of {characterAttack}, {characterHealth} hitpoints, and a defense of {characterDefense}.");
 
             #endregion
+
             #region Gender selection
 
             Console.WriteLine($"{characterName} is \n" +
@@ -248,7 +252,40 @@ namespace Starportal
             }
             #endregion
 
+            #region Tavern Interactions
+            while (true)
+                {
+                Console.WriteLine("\nEnter the portal? (Y, N)\n");
+            
+                userInput = Console.ReadLine();
 
+                if (userInput == "Y" || userInput == "y")
+                    {
+                        // randomly choose an elemental room for the appropriate level
+
+                    }
+
+                if (userInput == "N" || userInput == "n")
+                    {
+                        // make fun tavern interactions - patron teasing, barmaid or owner banter/rumors. Offer tavern menu options.
+                    }
+                else
+                    Console.WriteLine("Invalid Option, please try again.\n");
+
+                }
+            #endregion
+
+
+
+            #region FireDungeon Creation
+            Dungeon PlaneOfFireLevel1 = new Dungeon ("You have entered the primordial plane of Fire. Around you, a desolate hellscape of volcanic ash fills the air. Streams of lava flow over an obsidian landscape. Before you are 2 fire elemental guardians. \n", "South", "North");
+            NPC FireGuardian1 = new NPC("Fire Elemental 1", "Other", "Elemental", "Enemy", 10, 5, 10, 10);
+            NPC FireGuardian2 = new NPC("Fire Elemental 1", "Other", "Elemental", "Enemy", 10, 5, 10, 10);
+            
+            Console.WriteLine($"{PlaneOfFire_1.Description}");
+
+
+            #endregion
 
 
 

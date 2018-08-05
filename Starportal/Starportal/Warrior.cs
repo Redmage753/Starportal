@@ -26,6 +26,8 @@ namespace CharacterBuilder
         public int CharacterConstitution { get; set; } = 8;
         public int CharacterCharisma { get; set; } = 8;
 
+
+        // Will interact with Tavern module to replenish a retreating characters health.
         public double Eat(double food)
         {
             return CurrentHealth += food;
@@ -49,7 +51,7 @@ namespace CharacterBuilder
             this.CurrentHealth = currentHealth;
         }
 
-        // Warrior Constructor - for a D&D model
+        // Warrior Constructor - for a D&D Ruleset in a future version
 
         public Warrior(string name, double weapon, double armorclass, double health, double currentHealth, int strength, int wisdom, int dexterity, int intelligence, int constitution, int charisma)
         {

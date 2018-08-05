@@ -10,7 +10,7 @@ namespace ScenarioBuilder
     {
         string RoomDescription();
         string DoorExit();
-        string DoorContinue();
+        string DoorProgress();
 
     }
 }
