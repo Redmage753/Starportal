@@ -26,16 +26,8 @@ namespace CharacterBuilder
         public int CharacterConstitution { get; set; } = 8;
         public int CharacterCharisma { get; set; } = 8;
 
-        public double Eat(double food)
-        {
-            return CurrentHealth += food;
-        }
 
-        public double Rest(double rest)
-        {
-            return CurrentHealth = Health;
-        }
-        
+
         // Warrior Constructor - For a basic model
         public Warrior(string name, string gender, string race, string role, double attack, double defend, double health, double currentHealth)
         {
@@ -49,7 +41,34 @@ namespace CharacterBuilder
             this.CurrentHealth = currentHealth;
         }
 
-        // Warrior Constructor - for a D&D model
+        // Will interact with Tavern module to replenish a retreating characters health.
+        public double Eat(double food)
+        {
+            return CurrentHealth += food;
+        }
+
+        public double Rest(double rest)
+        {
+            return CurrentHealth = Health;
+        }
+        /*
+
+        Random rndAttack = new Random();
+        Random rndBlock = new Random();
+
+        public double WeaponStrike()
+        {
+            return rndAttack.Next(1, Convert.ToInt32(Attack));
+        }
+
+        public double ShieldDefense()
+        {
+            return rndBlock.Next(1, Convert.ToInt32(Defend));
+        }
+        */
+
+
+        #region Warrior Constructor - for a D&D Ruleset in a future version
 
         public Warrior(string name, double weapon, double armorclass, double health, double currentHealth, int strength, int wisdom, int dexterity, int intelligence, int constitution, int charisma)
         {
@@ -66,6 +85,7 @@ namespace CharacterBuilder
             this.CharacterIntelligence = intelligence;
             this.CharacterDexterity = dexterity;
         }
-        
+        #endregion
+
     }
 }

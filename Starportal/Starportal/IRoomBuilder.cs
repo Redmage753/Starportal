@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ScenarioBuilder
 {
-    interface IRoomNavigation
+    interface IRoomBuilder
     {
-        string RoomDescription();
-        string DoorExit();
-        string DoorContinue();
+        string RoomDescription { get; set; }
+        string DoorExit { get; set; }
+        string DoorProgress { get; set; }
 
     }
 }
