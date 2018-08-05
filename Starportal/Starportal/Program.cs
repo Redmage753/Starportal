@@ -252,31 +252,6 @@ namespace Starportal
             }
             #endregion
 
-            #region Tavern Interactions
-            while (true)
-                {
-                Console.WriteLine("\nEnter the portal? (Y, N)\n");
-            
-                userInput = Console.ReadLine();
-
-                if (userInput == "Y" || userInput == "y")
-                    {
-                        // randomly choose an elemental room for the appropriate level
-
-                    }
-
-                if (userInput == "N" || userInput == "n")
-                    {
-                        // make fun tavern interactions - patron teasing, barmaid or owner banter/rumors. Offer tavern menu options.
-                    }
-                else
-                    Console.WriteLine("Invalid Option, please try again.\n");
-
-                }
-            #endregion
-
-
-
             #region FireDungeon Creation
             Dungeon PlaneOfFireLevel1 = new Dungeon ("You have entered the primordial plane of Fire. Around you, a desolate hellscape of volcanic ash fills the air. Streams of lava flow over an obsidian landscape. Before you are 2 fire elemental guardians. \n", "South", "North");
             NPC FireGuardian1 = new NPC("Fire Elemental 1", "Other", "Elemental", "Enemy", 10, 5, 10, 10);
@@ -287,9 +262,35 @@ namespace Starportal
 
             #endregion
 
+            #region Tavern Interactions
+            while (true)
+                {
+                Console.WriteLine("\nEnter the portal? (Y, N)\n");
+
+                userInput = Console.ReadLine();
+
+                if (userInput == "Y" || userInput == "y")
+                    {
+                        // randomly choose an elemental room for the appropriate level
+
+                    Console.WriteLine("\nEnter the portal again?");
+                    userInput = Console.ReadLine();
+                    }
+
+                if (userInput == "N" || userInput == "n")
+                    {
+                        // make fun tavern interactions - patron teasing, barmaid or owner banter/rumors. Offer tavern menu options.
+                    
+                    Console.WriteLine("\nEnter the portal now?");
+                    userInput = Console.ReadLine();
+                    }
+
+                else
+                    Console.WriteLine("Invalid Option, please try again.\n");
+                }
+            #endregion
 
 
-            Console.ReadLine();
         }
     }
 }
