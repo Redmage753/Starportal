@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterBuilder
 {
+    //for adding D&D Ruleset in a future version
     interface ICharacterStats
     {
         int CharacterStrength { get; set; }

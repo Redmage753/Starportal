@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CharacterBuilder
+namespace ScenarioBuilder
 {
-    interface IRoomBuilder
+    interface IRoomNavigation
     {
         string RoomDescription();
         string DoorExit();
         string DoorContinue();
-        string RoomMobs();
 
     }
 }

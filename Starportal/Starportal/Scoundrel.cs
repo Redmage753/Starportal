@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Starportal
+namespace CharacterBuilder
 {
     /*
-    class Scoundrel : ICharacterStats, ICharacterActions
+    class Scoundrel : ICharacterStats, ICharacterActions, ICharacterTraits
     {
     }
     */

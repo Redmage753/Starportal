@@ -10,11 +10,15 @@ namespace CharacterBuilder
     {
         // initialize interface contract
         public string Name { get; set; } = "UnknownPlayer";
+        public string Role { get; set; } = "Null";
+        public string Race { get; set; } = "Null";
+        public string Gender { get; set; } = "Null";
         public double Attack { get; set; } = 0.0;
         public double Defend { get; set; } = 0.0;
         public double Health { get; set; } = 0.0;
         public double CurrentHealth { get; set; } = 0.0;
 
+        //for adding D&D Ruleset in a future version
         public int CharacterStrength { get; set; } = 8;
         public int CharacterWisdom { get; set; } = 8;
         public int CharacterDexterity { get; set; } = 8;
@@ -33,9 +37,12 @@ namespace CharacterBuilder
         }
         
         // Warrior Constructor - For a basic model
-        public Warrior(string name, double attack, double defend, double health, double currentHealth)
+        public Warrior(string name, string gender, string race, string role, double attack, double defend, double health, double currentHealth)
         {
             this.Name = name;
+            this.Gender = gender;
+            this.Race = race;
+            this.Role = role;
             this.Attack = attack;
             this.Defend = defend;
             this.Health = health;
@@ -59,11 +66,6 @@ namespace CharacterBuilder
             this.CharacterIntelligence = intelligence;
             this.CharacterDexterity = dexterity;
         }
-
-
-
-
-
-
+        
     }
 }

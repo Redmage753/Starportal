@@ -9,11 +9,13 @@ namespace CharacterBuilder
     interface ICharacterTraits
     {
         string Name { get; set; }
+        string Gender { get; set; }
+        string Role { get; set; }
+        string Race { get; set; }
         double Attack { get; set; }
         double Defend { get; set; }
         double Health { get; set; }
         double CurrentHealth { get; set; }
-             
-
+        
     }
 }

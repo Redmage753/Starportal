@@ -17,14 +17,17 @@ namespace Starportal
             var gender = "No gender";
             var userInput = "No Race";
 
-            var characterName = "Unnamed";
+            var characterName = "NullName";
+            var characterGender = "NullGender";
+            var characterRole = "NullRole";
+            var characterRace = "NullRace";
             var characterAttack = 0;
             var characterDefense = 0;
             var characterHealth = 0;
             var characterCurrentHealth = 0;
             var pointDistribution = 30;
 
-            Console.WriteLine("Welcome to the Infinity Continuum Inn & Tavern! \n\nAdventurers come to us from around the world to explore the dangerous worlds found beyond the infamous Star Portal!\n\n " +
+            Console.WriteLine("Welcome to the Infinity Continuum Inn & Tavern! \n\nAdventurers come to us from around the world to explore the dangerous worlds found beyond the infamous Star Portal!\n\n" +
                               "Right now, we’ve managed a modicum of control – we can send you to any of the primordial elemental planes. The problem is, we don’t know which one you will get before – you’ll find out only once you’ve passed through. We believe if you can recover an elemental core from each location, our resident warlock Vanarak will be able to develop a more precise control unit. He may even be able to amplify the power to reach other locations!\n\n" +
                               "If this task is too dangerous, there is still a wealth of treasures to be found in the realms. Feel free to pursue as shallow or deep as you want into each world. Just remember where your exit door is, or you won’t be able to return!\n\n" +
                               "Now, let’s find out who our explorers are today!");
@@ -35,8 +38,7 @@ namespace Starportal
             Console.WriteLine("Please choose a class\n" +
                 "1. Warrior\n" +
                 "2. Magician\n" +
-                "3. Scoundrel\n +" +
-                "x to exit at any time.");
+                "3. Scoundrel\n");
 
 
             while (true)
@@ -46,26 +48,20 @@ namespace Starportal
                 role = userInput.ToString();
                 if (role == "1")
                 {
-                    role = "Warrior";
+                    characterRole = "Warrior";
                     break;
                 }
 
                 if (role == "2")
                 {
-                    role = "Magician";
+                    characterRole = "Magician";
                     break;
                 }
 
                 if (role == "3")
                 {
-                    role = "Scoundrel";
+                    characterRole = "Scoundrel";
                     break;
-                }
-                
-                if (role == "x")
-                {
-                    Console.WriteLine("Goodbye.");
-                    break;                    
                 }
 
                 else
@@ -73,8 +69,7 @@ namespace Starportal
                     Console.WriteLine($"{role} is an invalid choice. Please select:" +
                         $"1 for Warrior\n" +
                         $"2 for Magician\n" +
-                        $"3 for Scoundrel\n" +
-                        $"x to Exit.\n");
+                        $"3 for Scoundrel\n");
                 }
             }
             #endregion
@@ -96,33 +91,26 @@ namespace Starportal
                 race = userInput.ToString();
                 if (race == "1")
                 {
-                    race = "Human";
+                    characterRace = "Human";
                     break;
                 }
 
                 if (race == "2")
                 {
-                    race = "Elf";
+                    characterRace = "Elf";
                     break;
                 }
 
                 if (race == "3")
                 {
-                    race = "Dwarf";
+                    characterRace = "Dwarf";
                     break;
                 }
 
                 if (race == "4")
                 {
-                    race = "Halfling";
+                    characterRace = "Halfling";
                     break;
-                }
-
-                if (race == "x")
-                {
-                    Console.WriteLine("Goodbye.");
-                    break;
-                    
                 }
 
 
@@ -132,15 +120,14 @@ namespace Starportal
                         $"1 for Human\n" +
                         $"2 for Elf\n" +
                         $"3 for Dwarf\n" +
-                        $"4 for Halfling\n" +
-                        $"x to Exit.\n");
+                        $"4 for Halfling\n");
                 }
             }
             #endregion
-            Console.WriteLine($"You have chosen the path of the {race} {role}!\n");
+            Console.WriteLine($"You have chosen the path of the {characterRace} {characterRole}!\n");
             #region Name & Stats
 
-            Console.WriteLine($"What is your {race} {role}'s name?\n");
+            Console.WriteLine($"What is your {characterRace} {characterRole}'s name?\n");
             characterName = Console.ReadLine();
 
             Console.WriteLine($"You have {pointDistribution} to spread between Attack, Health, and Defense.");
@@ -203,8 +190,7 @@ namespace Starportal
             Console.WriteLine($"{characterName} is \n" +
                 "1. Male \n" +
                 "2. Female \n" +
-                "3. Other \n" +
-                "x to Exit.\n");
+                "3. Other \n");
 
             while (true)
             {
@@ -213,25 +199,19 @@ namespace Starportal
                 gender = userInput.ToString();
                 if (gender == "1")
                 {
-                    gender = "Male";
+                    characterGender = "Male";
                     break;
                 }
 
                 if (gender == "2")
                 {
-                    gender = "Female";
+                    characterGender = "Female";
                     break;
                 }
 
                 if (gender == "3")
                 {
-                    gender = "Other";
-                    break;
-                }
-
-                if (gender == "x")
-                {
-                    Console.WriteLine("Goodbye.");
+                    characterGender = "Other";
                     break;
                 }
 
@@ -245,11 +225,28 @@ namespace Starportal
                 }
             }
             #endregion
-            Warrior playerOne = new Warrior(characterName, characterAttack, characterDefense, characterHealth, characterCurrentHealth);
+
+            #region Character Object creation & Printer
+            if (characterRole == "Warrior") {
+            Warrior playerOne = new Warrior(characterName, characterGender, characterRace, characterRole, characterAttack, characterDefense, characterHealth, characterCurrentHealth);
             
-            Console.WriteLine($"{playerOne.Name} has a strength of {playerOne.Attack}, a defense of {playerOne.Defend}, and {playerOne.CurrentHealth} health.");
+            Console.WriteLine($"{playerOne.Name}, {playerOne.Gender} {playerOne.Race} {playerOne.Role}, has a strength of {playerOne.Attack}, a defense of {playerOne.Defend}, and {playerOne.CurrentHealth} health.");
+            }
 
+            // FIXME  - change to Magician class when filled out
+            if (characterRole == "Magician") {
+            Warrior playerOne = new Warrior(characterName, characterGender, characterRace, characterRole, characterAttack, characterDefense, characterHealth, characterCurrentHealth);
+            
+            Console.WriteLine($"{playerOne.Name}, {playerOne.Gender} {playerOne.Race} {playerOne.Role}, has a strength of {playerOne.Attack}, a defense of {playerOne.Defend}, and {playerOne.CurrentHealth} health.");
+            }
 
+            // FIXME  - change to Scoundrel class when filled out
+            if (characterRole == "Scoundrel") {
+            Warrior playerOne = new Warrior(characterName, characterGender, characterRace, characterRole, characterAttack, characterDefense, characterHealth, characterCurrentHealth);
+            
+            Console.WriteLine($"{playerOne.Name}, {playerOne.Gender} {playerOne.Race} {playerOne.Role}, has a strength of {playerOne.Attack}, a defense of {playerOne.Defend}, and {playerOne.CurrentHealth} health.");
+            }
+            #endregion
 
 
 
