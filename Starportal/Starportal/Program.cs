@@ -29,7 +29,7 @@ namespace Starportal
             var pointDistribution = 30;
             #endregion
 
-            Console.WriteLine("Welcome to the Infinity Continuum Inn & Tavern! \n\nAdventurers come to us from around the world to explore the dangerous worlds found beyond the infamous Star Portal!\n\n" +
+            Console.WriteLine("Welcome to the Infinity Continuum Inn & Tavern! \n\nAdventurers come to us from around the world to explore the dangerous worlds found beyond the infamous Star Portal.\n\n" +
                               "Right now, we’ve managed a modicum of control – we can send you to any of the primordial elemental planes. The problem is, we don’t know which one you will get before – you’ll find out only once you’ve passed through. We believe if you can recover an elemental core from each location, our resident warlock Vanarak will be able to develop a more precise control unit. He may even be able to amplify the power to reach other locations!\n\n" +
                               "If this task is too dangerous, there is still a wealth of treasures to be found in the realms. Feel free to pursue as shallow or deep as you want into each world. Just remember where your exit door is, or you won’t be able to return!\n\n" +
                               "Now, let’s find out who our explorers are today!\n");
@@ -127,6 +127,47 @@ namespace Starportal
             }
             #endregion
 
+            #region Gender selection
+
+            Console.WriteLine($"Your characters gender is:\n" +
+                "1. Male \n" +
+                "2. Female \n" +
+                "3. Other \n");
+
+            while (true)
+            {
+                userInput = Console.ReadLine();
+
+                gender = userInput.ToString();
+                if (gender == "1")
+                {
+                    characterGender = "Male";
+                    break;
+                }
+
+                if (gender == "2")
+                {
+                    characterGender = "Female";
+                    break;
+                }
+
+                if (gender == "3")
+                {
+                    characterGender = "Other";
+                    break;
+                }
+
+                else
+                {
+                    Console.WriteLine($"{characterName} is \n" +
+                        $"1. Male \n" +
+                        $"2. Female \n" +
+                        $"3. Other \n" +
+                        $"x to Exit.\n");
+                }
+            }
+            #endregion
+
             Console.WriteLine($"You have chosen the path of the {characterRace} {characterRole}!\n");
             #region Name & Stats
 
@@ -189,52 +230,13 @@ namespace Starportal
 
             #endregion
 
-            #region Gender selection
 
-            Console.WriteLine($"{characterName} is \n" +
-                "1. Male \n" +
-                "2. Female \n" +
-                "3. Other \n");
-
-            while (true)
-            {
-                userInput = Console.ReadLine();
-
-                gender = userInput.ToString();
-                if (gender == "1")
-                {
-                    characterGender = "Male";
-                    break;
-                }
-
-                if (gender == "2")
-                {
-                    characterGender = "Female";
-                    break;
-                }
-
-                if (gender == "3")
-                {
-                    characterGender = "Other";
-                    break;
-                }
-
-                else
-                {
-                    Console.WriteLine($"{characterName} is \n" +
-                        $"1. Male \n" +
-                        $"2. Female \n" +
-                        $"3. Other \n" +
-                        $"x to Exit.\n");
-                }
-            }
-            #endregion
 
             #region Character Object creation & Printer
             
 
             // if (characterRole == "Warrior") {
-            Warrior playerOne = new Warrior(characterName, characterGender, characterRace, characterRole, characterAttack, characterDefense, characterHealth, characterCurrentHealth);
+            Warrior playerOne = new Warrior(characterName, characterGender, characterRace, characterRole, characterAttack, characterDefense, characterHealth, characterCurrentHealth, 0);
             
             Console.WriteLine($"{playerOne.Name}, {playerOne.Gender} {playerOne.Race} {playerOne.Role}, has a strength of {playerOne.Attack}, a defense of {playerOne.Defend}, and {playerOne.CurrentHealth} health.");
             // }
@@ -257,19 +259,20 @@ namespace Starportal
 
             #region FireDungeon Creation
             Dungeon PlaneOfFireLevel1 = new Dungeon ("You have entered the primordial plane of Fire. Around you, a desolate hellscape of volcanic ash fills the air. Streams of lava flow over an obsidian landscape. Before you are 2 fire elemental guardians. \n", "South", "North");
-            NPC FireGuardian1 = new NPC("Fire Elemental 1", "Other", "Elemental", "Enemy", 3, 2, 10, 10);
-            NPC FireGuardian2 = new NPC("Fire Elemental 2", "Other", "Elemental", "Enemy", 3, 2, 10, 10);
+            NPC FireGuardian1 = new NPC("Fire Elemental 1", "Other", "Elemental", "Enemy", 5, 2, 15, 15);
+            NPC FireGuardian2 = new NPC("Fire Elemental 2", "Other", "Elemental", "Enemy", 5, 2, 15, 15);
 
             Dungeon PlaneOfFireLevel2 = new Dungeon("You proceed north. As you approach the Temple, you see a gathering of Yuan-ti. \n", "South", "East");
-            NPC FireSalamandar1 = new NPC("Kaladin", "Other", "Yuan-ti", "Enemy", 5, 10, 20, 20);
-            NPC FireSalamandar2 = new NPC("Kendric", "Other", "Yuan-ti", "Enemy", 5, 5, 20, 20);
+            NPC FireSalamandar1 = new NPC("Kaladin", "Other", "Yuan-ti", "Enemy", 10, 6, 20, 20);
+            NPC FireSalamandar2 = new NPC("Kendric", "Other", "Yuan-ti", "Enemy", 6, 4, 20, 20);
 
             Dungeon PlaneOfFireLevel3 = new Dungeon("You proceed north. As you approach the Temple, you see a gathering of Yuan-ti. \n", "South", "East");
-            NPC FireDevilBoss = new NPC("Err'tu", "Other", "Devil", "Enemy", 20, 20, 40, 40);
+            NPC FireDevilBoss = new NPC("Err'tu", "Other", "Devil", "Enemy", 15, 10, 40, 40);
 
             #endregion
 
-            #region Tavern Interactions
+
+            #region Adventure Interactions
             while (true)
                 {
                 var userAction = "0";
@@ -277,19 +280,23 @@ namespace Starportal
 
                 userInput = Console.ReadLine();
 
-                if (userInput == "Y" || userInput == "y")
+                if (userInput == "Y" || userInput == "y" && playerOne.Level == 0)
                     {
-                    // randomly choose an elemental room for the appropriate level
-                    bool exit = false;
-
+                    // FIXME: randomly choose an elemental room for the appropriate level
+                    
                     #region FireTest
-                    while (exit == false) // non random for intial testing
+                    bool exit = false;
+                    while (exit == false) // non random for testing
                     {
-                       Console.WriteLine($"{PlaneOfFireLevel1.RoomDescription}");
-                       Console.WriteLine($"Looking over your shoulder to the {PlaneOfFireLevel1.DoorExit}, you see the Portal back to the tavern. Behind {FireGuardian1.Name}, you see a Temple in the {PlaneOfFireLevel1.DoorProgress}.\n Defeat the guardians to proceed!");
+                        Console.WriteLine($"{PlaneOfFireLevel1.RoomDescription}");
+                        Console.WriteLine($"Looking over your shoulder to the {PlaneOfFireLevel1.DoorExit}, you see the Portal back to the tavern. Behind {FireGuardian1.Name}, you see a Temple in the {PlaneOfFireLevel1.DoorProgress}.\nDefeat the guardians to proceed!\n");
 
                         while (FireGuardian1.CurrentHealth + FireGuardian2.CurrentHealth > 0 && playerOne.CurrentHealth > 0)
                         {
+
+                            // test statement
+                            // Console.WriteLine($"Encounter Health: {FireGuardian1.CurrentHealth} + {FireGuardian2.CurrentHealth} = {FireGuardian1.CurrentHealth + FireGuardian2.CurrentHealth}");
+                            // end test
                             double HealthLoss = 0;
                             Console.WriteLine("\n" +
                                 "1. Attack\n" +
@@ -299,6 +306,7 @@ namespace Starportal
                             if (userAction == "1")
                             {
                                 var userTarget = "0";
+                                // if one is defeated and the two isn't, autofight number 2.
                                 if (FireGuardian1.CurrentHealth <= 0 && FireGuardian2.CurrentHealth > 0)
                                 {
                                     HealthLoss = Fight.Round(playerOne.Attack, FireGuardian2.Defend);
@@ -311,11 +319,15 @@ namespace Starportal
                                         HealthLoss = Fight.Round(FireGuardian2.Attack, playerOne.Defend);
                                         playerOne.CurrentHealth -= HealthLoss;
                                     }
-                                    else Console.WriteLine($"{FireGuardian2.Name} is defeated!");
-                                    Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.\n");
-                                    
+                                    else
+                                    {
+                                        Console.WriteLine($"{FireGuardian2.Name} is defeated!");
+                                        FireGuardian2.CurrentHealth = 0;
                                     }
+                                    Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.\n");
 
+                                }
+                                // if two is defeated and one isn't, autofight number 1.
                                 if (FireGuardian2.CurrentHealth <= 0 && FireGuardian1.CurrentHealth > 0)
                                 {
                                     HealthLoss = Fight.Round(playerOne.Attack, FireGuardian1.Defend);
@@ -328,55 +340,76 @@ namespace Starportal
                                         HealthLoss = Fight.Round(FireGuardian1.Attack, playerOne.Defend);
                                         playerOne.CurrentHealth -= HealthLoss;
                                     }
-                                    else Console.WriteLine($"{FireGuardian1.Name} is defeated!");
+                                    else
+                                    {
+                                        Console.WriteLine($"{FireGuardian1.Name} is defeated!");
+                                        FireGuardian1.CurrentHealth = 0;
+                                    }
                                     Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.\n");
                                 }
-                                
+                                // if both are alive:
                                 else
                                 {
                                     Console.WriteLine("Which one do you want to attack?\n" +
                                         "1. {0}\n" +
                                         "2. {1}\n", FireGuardian1.Name, FireGuardian2.Name);
                                     userTarget = Console.ReadLine();
-
-                                    if (userTarget == "1")
+                                    bool turnExit = false;
+                                    while (turnExit == false)
                                     {
-                                        HealthLoss = Fight.Round(playerOne.Attack, FireGuardian1.Defend);
-                                        FireGuardian1.CurrentHealth -= HealthLoss;
-                                        Console.WriteLine($"{FireGuardian1.Name} has {FireGuardian1.CurrentHealth} hitpoints left.\n");
-
-                                        if (FireGuardian1.CurrentHealth > 0)
+                                        if (userTarget == "1")
                                         {
-                                            Console.WriteLine($"{FireGuardian1.Name} strikes back!\n");
+                                            Console.WriteLine($"{playerOne.Name} attacks!\n");
+                                            HealthLoss = Fight.Round(playerOne.Attack, FireGuardian1.Defend);
+                                            FireGuardian1.CurrentHealth -= HealthLoss;
+
+                                            if (FireGuardian1.CurrentHealth > 0)
+                                            {
+                                                Console.WriteLine($"{FireGuardian1.Name} strikes back!\n");
+                                                HealthLoss = Fight.Round(FireGuardian1.Attack, playerOne.Defend);
+                                                playerOne.CurrentHealth -= HealthLoss;
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine($"{FireGuardian1.Name} is defeated!");
+                                                FireGuardian1.CurrentHealth = 0;
+                                            }
+
+                                            Console.WriteLine($"{FireGuardian2.Name} strikes!\n");
+                                            HealthLoss = Fight.Round(FireGuardian2.Attack, playerOne.Defend);
+                                            playerOne.CurrentHealth -= HealthLoss;
+
+                                            turnExit = true;
+                                            break;
+                                        }
+
+                                        if (userTarget == "2")
+                                        {
+                                            Console.WriteLine($"{playerOne.Name} attacks!\n");
+                                            HealthLoss = Fight.Round(playerOne.Attack, FireGuardian2.Defend);
+                                            FireGuardian2.CurrentHealth -= HealthLoss;
+
+                                            Console.WriteLine($"{FireGuardian2.Name} strikes back!\n");
+                                            HealthLoss = Fight.Round(FireGuardian2.Attack, playerOne.Defend);
+                                            playerOne.CurrentHealth -= HealthLoss;
+
+                                            Console.WriteLine($"{FireGuardian1.Name} strikes!\n");
                                             HealthLoss = Fight.Round(FireGuardian1.Attack, playerOne.Defend);
                                             playerOne.CurrentHealth -= HealthLoss;
+
+                                            turnExit = true;
+                                            break;
                                         }
-                                        else Console.WriteLine($"{FireGuardian1.Name} is defeated!");
-                                        Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.\n");
-
-                                        Console.WriteLine($"{FireGuardian2.Name} strikes!\n");
-                                        HealthLoss = Fight.Round(FireGuardian2.Attack, playerOne.Defend);
-                                        playerOne.CurrentHealth -= HealthLoss;
-                                        Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.\n");
-                                    }
-
-                                    if (userTarget == "2")
-                                    {
-                                        HealthLoss = Fight.Round(playerOne.Attack, FireGuardian2.Defend);
-                                        FireGuardian2.CurrentHealth -= HealthLoss;
-                                        Console.WriteLine($"{FireGuardian2.Name} has {FireGuardian2.CurrentHealth} hitpoints left.\n");
-
-                                        Console.WriteLine($"{FireGuardian2.Name} strikes back!\n");
-                                        HealthLoss = Fight.Round(FireGuardian2.Attack, playerOne.Defend);
-                                        playerOne.CurrentHealth -= HealthLoss;
-                                        Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.\n");
-
-                                        Console.WriteLine($"{FireGuardian1.Name} strikes!\n");
-                                        HealthLoss = Fight.Round(FireGuardian1.Attack, playerOne.Defend);
-                                        playerOne.CurrentHealth -= HealthLoss;
-                                        Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.\n");
+                                        if (userTarget != "1" && userTarget != "2")
+                                        {
+                                            Console.WriteLine("Please choose 1 or 2.");
+                                            userTarget = Console.ReadLine();
+                                        }
                                     }
                                 }
+                                Console.WriteLine($"{FireGuardian1.Name} has {FireGuardian1.CurrentHealth} hitpoints left.");
+                                Console.WriteLine($"{FireGuardian2.Name} has {FireGuardian2.CurrentHealth} hitpoints left.");
+                                Console.WriteLine($"{playerOne.Name} has {playerOne.CurrentHealth} hitpoints left.");
                             }
                             if (userAction == "2")
                             {
@@ -384,7 +417,7 @@ namespace Starportal
                                 exit = true;
                                 break;
                             }
-                            else
+                            if (userAction != "1" && userAction != "2")
                             {
                                 Console.WriteLine("Invalid choice. Fight, or retreat!\n");
                             }
@@ -398,35 +431,65 @@ namespace Starportal
                             Environment.Exit(0);
                         }
 
-                        // add levels 2 and 3 here.
-                        Console.WriteLine($"Do you proceed {PlaneOfFireLevel1.DoorProgress} or return {PlaneOfFireLevel1.DoorExit} to the tavern?");
-                        userAction = Console.ReadLine();
-                        if (userAction == "1")
+                        if (FireGuardian1.CurrentHealth == 0 && FireGuardian2.CurrentHealth == 0 && playerOne.Level <= 0)
                         {
-
+                            Console.WriteLine("You leveled!");
+                            playerOne.Level += 1;
+                            playerOne.Attack += 3;
+                            playerOne.Defend += 3;
+                            playerOne.Health += 5;
                         }
-            
+
+                        else if (exit == true) { break; }
+                                           
+
+                        // add levels 2 and 3 here.
+                        else
+                        {
+                            while (true)
+                            {               
+                                Console.WriteLine($"Do you proceed {PlaneOfFireLevel1.DoorProgress} toward the Temple or return {PlaneOfFireLevel1.DoorExit} to the tavern?" +
+                                    $"\n1. Proceed." +
+                                    $"\n2. Return to Tavern.\n");
+                                userAction = Console.ReadLine();
+                                if (userAction == "1")
+                                {
+                                    Console.WriteLine("This is level 2.\n");
+                                    Console.ReadLine();
+
+                                }
+
+                                if (userAction == "2")
+                                {
+                                    Console.WriteLine("You retreat through the portal to the safety of the Tavern.");
+                                    exit = true;
+                                    break;
+                                }
+                                if (userAction != "1" && userAction != "2")
+                                { Console.WriteLine("Please select a valid option.\n"); }
+                            }
+                            
+                        }
                         // all monsters defeated
                         exit = true;
                         #endregion
                     }
-
-
-
-
-                    Console.WriteLine("\nEnter the portal again?");
-                    userInput = Console.ReadLine();
-                    }
+                }
 
                 if (userInput == "N" || userInput == "n")
                     {
                         // make fun tavern interactions - patron teasing, barmaid or owner banter/rumors. Offer tavern menu options.
-                    
+                        // make a class filled with a random select that outputs a teasing line
                     Console.WriteLine("\nJeering Adventurer: What are you, a coward!?\n");
-                    }
+                    Console.WriteLine("While being jeered; you decide to eat and rest up.\n");
+                    playerOne.CurrentHealth = playerOne.Health;
+                    Console.WriteLine("Minutes later, you feel refreshed. (You have {0} hitpoints}", playerOne.CurrentHealth);
+                }
 
-                else
-                    Console.WriteLine("Invalid Option, please try again.\n");
+                if (userInput != "Y" && userInput != "y" && userInput != "n" && userInput != "N")
+                    {
+                        Console.WriteLine("Invalid Option, please try again.\n");
+                    }
                 }
             #endregion
 

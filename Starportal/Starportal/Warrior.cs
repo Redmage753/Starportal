@@ -17,6 +17,7 @@ namespace CharacterBuilder
         public double Defend { get; set; } = 0.0;
         public double Health { get; set; } = 0.0;
         public double CurrentHealth { get; set; } = 0.0;
+        public double Level { get; set; } = 0;
 
         //for adding D&D Ruleset in a future version
         public int CharacterStrength { get; set; } = 8;
@@ -29,7 +30,7 @@ namespace CharacterBuilder
 
 
         // Warrior Constructor - For a basic model
-        public Warrior(string name, string gender, string race, string role, double attack, double defend, double health, double currentHealth)
+        public Warrior(string name, string gender, string race, string role, double attack, double defend, double health, double currentHealth, double level)
         {
             this.Name = name;
             this.Gender = gender;
@@ -39,6 +40,7 @@ namespace CharacterBuilder
             this.Defend = defend;
             this.Health = health;
             this.CurrentHealth = currentHealth;
+            this.Level = level;
         }
 
         // Will interact with Tavern module to replenish a retreating characters health.

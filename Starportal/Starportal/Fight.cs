@@ -11,28 +11,31 @@ namespace Starportal
     {
         public static double Round(double attack, double defense)
         {
-            Random rndAttack = new Random();
-            Random rndBlock = new Random();
+            Random rnd = new Random();
 
             double WeaponStrike()
             {
-                return rndAttack.Next(1, Convert.ToInt32(attack));
+                return rnd.Next(1, Convert.ToInt32(attack));
             }
 
             double ShieldDefense()
             {
-                return rndBlock.Next(1, Convert.ToInt32(defense));
+                return rnd.Next(1, Convert.ToInt32(defense));
             }
 
-            double damageDealt = WeaponStrike() - ShieldDefense();
+            double strike = WeaponStrike();
+            double block = ShieldDefense();
+
+
+            double damageDealt = strike - block;
             if (damageDealt < 0)
             {
-                Console.WriteLine("The strike deals {0} damage, but is blocked by {1} defense.", WeaponStrike(), ShieldDefense());
-                Console.WriteLine("The attack was ineffective!");
+                Console.WriteLine("The strike deals {0} damage, but is blocked by {1} defense.\n", strike, block);
+                Console.WriteLine("The attack was ineffective!\n");
                 return damageDealt = 0;
             }
             else
-                Console.WriteLine("The strike deals {0} damage, and is blocked by {1} defense for {2} damage.", WeaponStrike(), ShieldDefense(), damageDealt);
+                Console.WriteLine("The strike deals {0} damage and is blocked by {1} defense for {2} damage.", strike, block, damageDealt);
 
             return damageDealt;
         }
